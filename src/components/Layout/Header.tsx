@@ -1,40 +1,66 @@
-import { useState } from 'react';
-import { Search, Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { DropdownMenuHeader } from '@/components/ui/dropdown-menu-header';
-import { Link } from 'react-router-dom';
-import physicsLogo from '@/assets/physics-dept-logo.png';
+import { useEffect, useRef, useState } from "react";
+import { Search, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DropdownMenuHeader } from "@/components/ui/dropdown-menu-header";
+import { Link } from "react-router-dom";
+import physicsLogo from "@/assets/physics-dept-logo.png";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const setHeaderHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${height}px`
+        );
+      }
+    };
+
+    setHeaderHeight();
+    window.addEventListener("resize", setHeaderHeight);
+    return () => window.removeEventListener("resize", setHeaderHeight);
+  }, []);
 
   const navigationItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Research', href: '/research' },
-    { name: 'Study', href: '/study' },
-    { name: 'Engage', href: '/engage' },
-    { name: 'Our people', href: '/people' },
-    { name: 'News & Comment', href: '/news' },
-    { name: 'Events', href: '/events' },
-    { name: 'Our facilities & services', href: '/facilities' },
-    { name: 'About us', href: '/about' },
+    { name: "Home", href: "/" },
+    { name: "Research", href: "/research" },
+    { name: "Study", href: "/study" },
+    { name: "Engage", href: "/engage" },
+    { name: "Our people", href: "/people" },
+    { name: "News & Comment", href: "/news" },
+    { name: "Events", href: "/events" },
+    { name: "Our facilities & services", href: "/facilities" },
+    { name: "About us", href: "/about" },
   ];
 
   return (
-    <header className="w-full bg-oxford-blue backdrop-blur-sm border-b border-border sticky top-0 z-50">
+    <header
+      ref={headerRef}
+      className="w-full bg-oxford-blue backdrop-blur-sm border-b border-border sticky top-0 z-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Oxford-style single-line header */}
         <div className="flex items-center justify-between py-4">
           {/* Left: Logo + Department Name */}
           <div className="flex items-center space-x-4">
             <Link to="/" className="flex items-center space-x-4">
-              <img src={physicsLogo} alt="Department of Physics" className="h-12 w-12" />
+              <img
+                src={physicsLogo}
+                alt="Department of Physics"
+                className="h-12 w-12"
+              />
               <div className="text-white">
-                <div className="text-xs font-medium tracking-wider uppercase">DEPARTMENT OF</div>
-                <div className="w-16 h-px bg-white/60 my-1"></div>
+                <div className="text-xs font-medium tracking-wider uppercase">
+                  DEPARTMENT OF
+                </div>
+                <div className="w-18 h-px bg-white/60 my-1"></div>
                 <div className="text-2xl font-bold tracking-wider">PHYSICS</div>
               </div>
             </Link>
@@ -52,20 +78,20 @@ export const Header = () => {
               </Link>
             ))}
           </div>
-          
+
           {/* Right: Search + Menu Button */}
           <div className="flex items-center space-x-4">
             {/* Search (Desktop) */}
             <div className="hidden md:flex items-center">
               {isSearchOpen ? (
                 <div className="flex items-center space-x-2 w-64">
-                  <Input 
-                    placeholder="Search..." 
+                  <Input
+                    placeholder="Search..."
                     className="w-full bg-white/10 border-white/20 text-white placeholder:text-white/60"
                     autoFocus
                   />
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     className="text-white hover:bg-white/10 flex-shrink-0"
                     onClick={() => setIsSearchOpen(false)}
@@ -74,8 +100,8 @@ export const Header = () => {
                   </Button>
                 </div>
               ) : (
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="sm"
                   className="text-white hover:bg-white/10 w-64 justify-start"
                   onClick={() => setIsSearchOpen(true)}
@@ -88,9 +114,9 @@ export const Header = () => {
 
             {/* Menu Button */}
             <div className="hidden lg:flex">
-              <DropdownMenuHeader 
-                isOpen={isDropdownOpen} 
-                onToggle={() => setIsDropdownOpen(!isDropdownOpen)} 
+              <DropdownMenuHeader
+                isOpen={isDropdownOpen}
+                onToggle={() => setIsDropdownOpen(!isDropdownOpen)}
               />
             </div>
 
@@ -101,13 +127,20 @@ export const Header = () => {
               className="lg:hidden text-white hover:bg-white/10"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </div>
         </div>
-
         {/* Mobile Navigation */}
-        <nav className={`${isMenuOpen ? 'block' : 'hidden'} lg:hidden border-t border-white/20`}>
+        <nav
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } lg:hidden border-t border-white/20`}
+        >
           <div className="flex flex-col py-4 space-y-2">
             {navigationItems.map((item) => (
               <Link

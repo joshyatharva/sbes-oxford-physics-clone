@@ -1,17 +1,23 @@
-import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-physics-lab.jpg';
+import { Button } from "@/components/ui/button";
+import heroImage from "@/assets/hero-physics-lab.jpg";
+import lordShiva from "@/assets/lord-shiva-hd.jpg";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <section
+      className="relative h-full flex flex-col items-center justify-center overflow-hidden flex-1"
+      style={{
+        height: "calc(100vh - var(--header-height))",
+      }}
+    >
       {/* Particle Background */}
       <div className="particle-background"></div>
-      
+
       {/* Hero Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
-          alt="S.B.E.S. Physics Laboratory" 
+        <img
+          src={lordShiva}
+          alt="Lord Shiva at C.E.R.N."
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-secondary/60"></div>
@@ -20,58 +26,45 @@ export const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 animate-fade-in-up">
-            Department of Physics
-            <span className="block text-3xl md:text-4xl lg:text-5xl font-normal mt-4 text-foreground/90">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up">
+            {/* Department of Physics */}
+            <span className="block text-3xl md:text-4xl lg:text-5xl font-normal text-foreground/90">
               S.B.E.S. College of Science
             </span>
           </h1>
-          
-          <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-foreground/90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            We apply the transformative power of physics to the foremost scientific problems; 
-            educate the next generation of leading physicists; and promote the public understanding of physics.
+
+          <p
+            className="text-xl md:text-2xl lg:text-3xl mb-12 text-foreground/90 leading-relaxed animate-fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
+            We apply the transformative power of physics to the foremost
+            scientific problems; educate the next generation of leading
+            physicists; and promote the public understanding of physics.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in-up w-full max-w-4xl" style={{ animationDelay: '0.4s' }}>
-            <div className="physics-card text-center group cursor-pointer">
-              <div className="mb-4">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto group-hover:bg-primary/30 transition-all">
-                  <div className="w-8 h-8 bg-primary rounded-full animate-pulse-glow"></div>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-foreground">RESEARCH</h3>
-              <p className="text-sm text-muted-foreground">Advancing scientific knowledge through cutting-edge research in quantum physics, astrophysics, and more.</p>
-            </div>
-            
-            <div className="physics-card text-center group cursor-pointer">
-              <div className="mb-4">
-                <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto group-hover:bg-secondary/30 transition-all">
-                  <div className="w-8 h-8 bg-accent rounded-full animate-pulse-glow"></div>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-foreground">STUDY</h3>
-              <p className="text-sm text-muted-foreground">Comprehensive physics education programs from junior college to undergraduate levels.</p>
-            </div>
-            
-            <div className="physics-card text-center group cursor-pointer">
-              <div className="mb-4">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto group-hover:bg-primary/30 transition-all">
-                  <div className="w-8 h-8 bg-primary rounded-full animate-pulse-glow"></div>
-                </div>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-foreground">ENGAGE</h3>
-              <p className="text-sm text-muted-foreground">Connect with our physics community through events, outreach programs, and collaborative initiatives.</p>
-            </div>
+          <div
+            className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
+            style={{ animationDelay: "0.4s" }}
+          >
+            <Button className="btn-hero text-lg" size="lg" variant="outline">
+              RESEARCH
+            </Button>
+            <Button className="btn-hero text-lg" size="lg" variant="outline">
+              STUDY
+            </Button>
+            <Button className="btn-hero text-lg" size="lg" variant="outline">
+              ENGAGE
+            </Button>
           </div>
         </div>
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-50">
         <div className="w-6 h-10 border-2 border-foreground/50 rounded-full">
           <div className="w-1 h-3 bg-foreground/50 rounded-full mx-auto mt-2 animate-pulse"></div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

@@ -1,5 +1,6 @@
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import quote from "@/assets/quote.jpeg";
 
 export const FeaturedSection = () => {
   return (
@@ -9,10 +10,11 @@ export const FeaturedSection = () => {
           {/* Image */}
           <div className="relative">
             <div className="physics-card overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1920&h=1080&auto=format&fit=crop"
+              <img
+                // src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1920&h=1080&auto=format&fit=crop"
+                src={quote}
                 alt="Quantum Computing Laboratory"
-                className="w-full h-[400px] object-cover"
+                className="w-full object-contain"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-full animate-pulse-glow"></div>
@@ -23,18 +25,23 @@ export const FeaturedSection = () => {
             <h2 className="text-4xl md:text-5xl font-bold animate-fade-in-up">
               The future is quantum
             </h2>
-            
-            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              Find out how our research is building the quantum technologies of tomorrow, 
-              how we are educating and inspiring future pioneers of quantum technology 
-              and how our research is being applied to real life, right now...
+
+            <p
+              className="text-lg md:text-xl text-foreground/80 leading-relaxed animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
+              Find out how our research is building the quantum technologies of
+              tomorrow, how we are educating and inspiring future pioneers of
+              quantum technology and how our research is being applied to real
+              life, right now...
             </p>
 
-            <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
               <Button className="btn-hero" size="lg" asChild>
-                <Link to="/research">
-                  Quantum at S.B.E.S.
-                </Link>
+                <Link to="/research">Quantum at S.B.E.S.</Link>
               </Button>
             </div>
           </div>
